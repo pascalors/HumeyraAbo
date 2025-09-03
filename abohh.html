@@ -1,0 +1,277 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abo 🤍 Hümeyra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        #hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            animation: fall linear infinite;
+            opacity: 0.7;
+            user-select: none;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(180deg);
+            }
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 100, 0.6);
+            max-width: 500px;
+            width: 90%;
+            z-index: 2;
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: scale(1.02);
+        }
+        
+        h1 {
+            color: #ff4081;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 0 15px rgba(255, 0, 100, 0.8);
+        }
+        
+        .counter-box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .counter-item {
+            padding: 15px;
+            min-width: 110px;
+        }
+        
+        .counter-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff4081;
+            text-shadow: 0 0 10px rgba(255, 64, 129, 0.7);
+            margin-bottom: 5px;
+        }
+        
+        .counter-label {
+            font-size: 1em;
+            color: #bbb;
+        }
+        
+        .date {
+            font-style: italic;
+            margin-top: 30px;
+            color: #aaa;
+            font-size: 1.2em;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        
+        .message {
+            margin-top: 20px;
+            color: #e0e0e0;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        
+        .music-note {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            animation: pulse 2s infinite;
+            z-index: 3;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div id="hearts"></div>
+    <div class="music-note">🎵</div>
+    
+    <div class="container">
+        <h1>A 🫀 H</h1>
+        
+        <div class="counter-box">
+            <div class="counter-item">
+                <div class="counter-value" id="days">0</div>
+                <div class="counter-label">Gün</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-value" id="hours">0</div>
+                <div class="counter-label">Saat</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-value" id="minutes">0</div>
+                <div class="counter-label">Dakika</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-value" id="seconds">0</div>
+                <div class="counter-label">Saniye</div>
+            </div>
+        </div>
+        
+        <div class="date">10 Ağustos 2025, 00:00'dan beri</div>
+        
+        <div class="message">
+            Seni seviyorum,<br>
+            
+        </div>
+    </div>
+    
+    <div class="instructions">Bir kere sayfaya tıklar mısın benim için🥹</div>
+
+    <!-- Şarkı için audio elementi -->
+    <audio id="loveSong" loop>
+        <source src="Abomuzik.mp3" type="audio/mpeg">
+       Hata
+    </audio>
+
+    <script>
+        
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '🤍';
+                
+                // Rastgele pozisyon ve animasyon süresi
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = -20 + 'px';
+                heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                
+                heartsContainer.appendChild(heart);
+                
+                // Animasyon bitince tekrar yukarı gönder
+                heart.addEventListener('animationiteration', () => {
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = -20 + 'px';
+                });
+            }
+        }
+
+        // Sayaç güncelleme fonksiyonu
+        function updateCounter() {
+            const startDate = new Date(2025, 7, 10, 0, 0, 0); // 10 Ağustos 2025, 00:00
+            const now = new Date();
+            const diff = now - startDate;
+
+            if (diff < 0) {
+                document.getElementById("days").textContent = "0";
+                document.getElementById("hours").textContent = "0";
+                document.getElementById("minutes").textContent = "0";
+                document.getElementById("seconds").textContent = "0";
+                return;
+            }
+
+            // Zaman hesaplamaları
+            const secondsTotal = Math.floor(diff / 1000);
+            const minutesTotal = Math.floor(secondsTotal / 60);
+            const hoursTotal = Math.floor(minutesTotal / 60);
+            const daysTotal = Math.floor(hoursTotal / 24);
+            
+            const hours = hoursTotal % 24;
+            const minutes = minutesTotal % 60;
+            const seconds = secondsTotal % 60;
+
+            // Ekrana yazdır
+            document.getElementById("days").textContent = daysTotal;
+            document.getElementById("hours").textContent = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").textContent = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").textContent = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        // Sayfa yüklendiğinde çalıştır
+        window.onload = function() {
+            createHearts();
+            updateCounter();
+            setInterval(updateCounter, 1000);
+            
+            // Tıklama olayı için
+            let hasPlayed = false;
+            document.body.addEventListener('click', function() {
+                if (!hasPlayed) {
+                    const audio = document.getElementById('loveSong');
+                    audio.play().catch(e => {
+                        console.log("Otomatik ses oynatma engellendi. Lütfen elle tıklayın.");
+                    });
+                    hasPlayed = true;
+                    document.querySelector('.music-note').style.color = '#ff4081';
+                    document.querySelector('.instructions').style.display = 'none';
+                }
+            });
+            
+            // Dokunmatik ekranlar için
+            document.body.addEventListener('touchstart', function() {
+                if (!hasPlayed) {
+                    const audio = document.getElementById('loveSong');
+                    audio.play().catch(e => {
+                        console.log("Otomatik ses oynatma engellendi. Lütfen elle tıklayın.");
+                    });
+                    hasPlayed = true;
+                    document.querySelector('.music-note').style.color = '#ff4081';
+                    document.querySelector('.instructions').style.display = 'none';
+                }
+            });
+        };
+    </script>
+</body>
+</html>
